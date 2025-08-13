@@ -10,16 +10,15 @@ export class App extends React.Component {
   };
 
   private keyupHandler = (event: KeyboardEvent) => {
-    
     this.setState({ pressedKey: event.key });
   };
 
   componentDidMount(): void {
-    window.addEventListener('keyup', this.keyupHandler);
+    document.addEventListener('keyup', this.keyupHandler);
   }
 
   componentWillUnmount(): void {
-    window.removeEventListener('keyup', this.keyupHandler);
+    document.removeEventListener('keyup', this.keyupHandler);
   }
 
   render(): React.ReactNode {
@@ -27,7 +26,7 @@ export class App extends React.Component {
 
     return (
       <div className="App">
-        {pressedKey ? (
+        {pressedKey === '' ? (
           <p className="App__message">The last pressed key is [{pressedKey}]</p>
         ) : (
           <p className="App__message">Nothing was pressed yet</p>
